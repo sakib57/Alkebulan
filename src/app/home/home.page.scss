@@ -1,0 +1,82 @@
+        .welcome-card img {
+            max-height: 35vh;
+            overflow: hidden;
+        }
+        
+        ion-header {
+            ion-title {
+                padding-right: 10px;
+                --padding-right: 10px;
+            }
+        }
+        
+        ion-content {
+            background: #f9f9f9;
+            --background: #f9f9f9;
+            .ss_title {
+                background-color: #009fe3;
+                color: #fff;
+                margin: 0;
+                text-align: center;
+                padding: 30px 0px 80px 0px;
+                position: relative;
+            }
+            .ss_home_content {
+                position: relative;
+                top: -80px;
+                margin-bottom: -80px;
+            }
+            ion-card {
+                background: #fff;
+                --background: #fff;
+                border-bottom: 3px solid #009fe3;
+                ion-card-header {
+                    border-bottom: 1px solid #efefef;
+                    h6 {
+                        color: #009fe3;
+                    }
+                }
+                ion-card-content {
+                    .ss_head {
+                        font-weight: bold;
+                    }
+                }
+            }
+            ion-slides {
+                background: #009fe3;
+                ion-slide {
+                    ion-col {
+                        .block {
+                            background: linear-gradient(141deg, #81d9ff 0%, #1fc8db 51%, #2cb5e8 75%);
+                            --background: linear-gradient(141deg, #81d9ff 0%, #1fc8db 51%, #2cb5e8 75%);
+                        }
+                    }
+                }
+            }
+            .block {
+                border-radius: 5px;
+                padding: 5px;
+                box-shadow: 2px 2px 4px 2px #158ec1;
+                margin: 20px 10px 20px 10px;
+                ion-icon {
+                    font-size: 40px;
+                }
+                p {
+                    margin: 0px 10px;
+                    text-align: center;
+                    color: #fff;
+                }
+                h6 {
+                    text-align: center;
+                    margin: 0px;
+                    color: #c0ecff;
+                }
+            }
+            .no-data {
+                padding: 10px;
+                background-color: #ddd;
+                border-radius: 5px;
+                width: 140px;
+                margin: 50px auto;
+            }
+        }

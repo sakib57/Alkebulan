@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="" defaultHref="/select-plan"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Individual Saving (A) Plan</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="card_info && !isLoading">
+
+    <div class="ss_title">
+        <h4>Select Single Plan Period Type</h4>
+    </div>
+    <div style="text-align: center; margin:20px;">
+        <form [formGroup]="form">
+            <ion-item>
+                <ion-label position="floating" color="primary">Plan Name</ion-label>
+                <ion-input type="email" formControlName="plan_name"></ion-input>
+            </ion-item>
+            <small style="color:#fc7303" *ngIf="!form.controls.plan_name.valid  && submitAttempt">Please enter a plan name.</small>
+
+            <ion-item>
+                <ion-label position="floating" color="primary">Type</ion-label>
+                <ion-select (ionChange)="selectedType($event)">
+                    <ion-select-option *ngFor="let type of types" value="{{type.id}}">{{type.type}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" color="primary">Duration of Plan(Period)</ion-label>
+                <ion-select (ionChange)="selectedPeriod($event)" [disabled]="isPeriodDisabled">
+                    <ion-select-option *ngFor="let period of periods" value="{{period.id}}">{{period.period}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" color="primary">Amount(£)</ion-label>
+                <ion-select (ionChange)="selectedPrice($event)" [disabled]="isPriceDisabled">
+                    <ion-select-option *ngFor="let price of prices" value="{{price.id}}">{{price.price}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-button (click)="onSubmit()" fill="outline" shape="round" style="margin-top: 20px; font-weight: 700;">
+                Submit
+            </ion-button>
+        </form>
+    </div>
+</ion-content>
+
+<ion-content *ngIf="!card_info && !isLoading">
+    <div class="plan">
+        <p>You did not add any card yet, Please add a card detail</p>
+        <ion-button color="primary" routerLink="/payment-method">Add Card</ion-button>
+    </div>
+</ion-content>

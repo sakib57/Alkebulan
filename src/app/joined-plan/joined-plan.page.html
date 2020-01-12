@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title slot="end">
+            <img src="assets/icon/logo_white.png" height="25">
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <h4 class="ss_title">Joined Plan</h4>
+    <ion-card *ngFor="let plan of joinedPlan">
+        <ion-card-header style="text-align: center; text-transform:uppercase;">
+            <ion-card-title>Family & Frineds Savings Plan</ion-card-title>
+            <ion-card-subtitle>{{plan.type}} plan</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="4"> Created on: </ion-col>
+                    <ion-col size="8">{{plan.created_on | date}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="4">Group Name: </ion-col>
+                    <ion-col size="8">{{plan.groupName}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="4"> Plan Period: </ion-col>
+                    <ion-col size="8">{{plan.period}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="4">Amount: </ion-col>
+                    <ion-col size="8">£{{plan.plan_amount}}</ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,60 @@
+.plan {
+    width: 300px;
+    background-color: #ddd;
+    border-radius: 6px;
+    //height: 80px;
+    margin: 60px auto;
+    padding: 13px;
+    text-align: center;
+    outline: none;
+}
+
+.plan2 {
+    width: 300px;
+    background-color: #ddd;
+    border-radius: 6px;
+    //height: 80px;
+    margin: 0px auto;
+    padding: 13px;
+    text-align: center;
+    outline: none;
+}
+
+.payments_div {
+    text-align: center;
+}
+
+.payments_div p {
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.ss_crd_head {
+    background: #009fe3;
+    ion-card-subtitle {
+        color: #fff;
+    }
+}
+
+.payments_div {
+    .ss_h {
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+
+ion-segment-button {
+    max-width: 100% !important;
+    .sc-ion-label-ios-s {
+        padding: 10px 0px;
+    }
+}
+
+ion-card-header {
+    ion-card-title {
+        font-size: 16px;
+        color: #009fe3;
+        text-transform: uppercase;
+    }
+}

@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Create Family & Friends (S) Plan</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button text="" defaultHref="/select-family-plan"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ss_title">
+        <h4>Choose the Best tenure for your Savings Account Plan.</h4>
+    </div>
+    <div class="ss_box">
+        <form [formGroup]="form">
+            <ion-item>
+                <ion-label position="floating" color="primary">Group Name</ion-label>
+                <ion-input type="email" formControlName="group_name"></ion-input>
+            </ion-item>
+            <small style="color:#fc7303" *ngIf="!form.controls.group_name.valid  && submitAttempt">Please enter a plan name.</small>
+
+
+            <ion-item>
+                <ion-label position="floating" color="primary">Type</ion-label>
+                <ion-select (ionChange)="selectedType($event)">
+                    <ion-select-option *ngFor="let type of types" value="{{type.id}}">{{type.type}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" color="primary">Duration of Plan(Period)</ion-label>
+                <ion-select (ionChange)="selectedPeriod($event)" [disabled]="isPeriodDisabled">
+                    <ion-select-option *ngFor="let period of periods" value="{{period.id}}">{{period.period}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" color="primary">Amount(£)</ion-label>
+                <ion-select (ionChange)="selectedPrice($event)" [disabled]="isPriceDisabled">
+                    <ion-select-option *ngFor="let price of prices" value="{{price.id}}">{{price.price}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <div style="text-align: left; padding-top:10px;margin-top: 20px">
+                <span style="margin-left:10px; color:#009fe3">Select User List</span>
+                <ion-searchbar (ionInput)="ionInput($event)" placeholder="Search For User">
+                </ion-searchbar>
+                <div *ngIf="selectedItems" style="text-align: right;">
+                    <div *ngFor="let item of selectedItems; let i=index" class="list">
+                        {{item.fname}} {{item.lname}} -{{item.email}}
+                        <span (click)="cancleSelectedItem(i)" class="cancle">
+                        <ion-icon name="close"></ion-icon>
+                      </span>
+                    </div>
+                </div>
+                <div *ngIf="isResultReady">
+                    <ion-item *ngFor="let item of items" (click)="onItem(item.id, item.fname, item.lname, item.email)">
+                        <ion-label style="font-size: 13px; color:#009fe3">
+                            {{item.fname}} {{item.lname}} <br>{{item.email}}
+                        </ion-label>
+                    </ion-item>
+                </div>
+            </div>
+
+            <ion-button (click)="onSubmit()" fill="outline" shape="round" style="margin-top: 20px; font-weight: 700;">
+                Submit
+            </ion-button>
+        </form>
+    </div>
+</ion-content>

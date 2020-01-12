@@ -1,0 +1,38 @@
+ ion-title {
+     text-transform: uppercase;
+ }
+ 
+ ion-card-title {
+     font-size: 17px;
+     font-weight: 600;
+     color: #009fe3;
+     margin-bottom: 7px;
+ }
+ 
+ ion-card-subtitle {
+     font-size: 13px;
+     letter-spacing: 2px;
+ }
+ 
+ ion-header {
+     ion-title {
+         padding-right: 10px;
+         --padding-right: 10px;
+     }
+ }
+ 
+ ion-card {
+     position: relative;
+     top: -80px;
+     background: #fff;
+ }
+ 
+ .ss_title {
+     background-color: #009fe3;
+     color: #fff;
+     margin: 0;
+     font-weight: bold;
+     text-align: center;
+     padding: 30px 0px 80px 0px;
+     position: relative;
+ }

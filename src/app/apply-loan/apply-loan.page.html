@@ -1,0 +1,201 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Apply for Loan</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="login">
+        <form [formGroup]="form">
+            <ion-list no-padding no-line>
+                <ion-item>
+                    <ion-label position="floating" color="">First Name</ion-label>
+                    <ion-input type="text" formControlName="first_name"></ion-input>
+                </ion-item>
+                <small style="color:#fc7303" *ngIf="!form.controls.first_name.valid  && submitAttempt">Please enter a valid email.</small>
+                <ion-item>
+                    <ion-label position="floating" color="">Last Name</ion-label>
+                    <ion-input type="text" formControlName="last_name"></ion-input>
+                </ion-item>
+                <small style="color:#fc7303" *ngIf="!form.controls.last_name.valid  && submitAttempt">Please enter password.</small>
+                <ion-item>
+                    <ion-label position="stacked" color="">Date of birth</ion-label>
+                    <ion-datetime formControlName="date" value="1990-02-19" placeholder="Select Date"></ion-datetime>
+
+                </ion-item>
+                <small style="color:#fc7303" *ngIf="!form.controls.date.valid  && submitAttempt">Please enter password.</small>
+                <ion-item>
+                    <ion-label position="floating" color="">No of dependents</ion-label>
+                    <ion-input type="number" formControlName="no_of_dependents"></ion-input>
+                </ion-item>
+                <!-- <small style="color:#fc7303" *ngIf="!form.controls.no_of_dependents.valid  && submitAttempt">Please enter password.</small> -->
+                <ion-item>
+                    <ion-label position="floating" color="">Home Tel No.</ion-label>
+                    <ion-input type="number" formControlName="home_tel"></ion-input>
+                </ion-item>
+                <!-- <small style="color:#fc7303" *ngIf="!form.controls.home_tel.valid  && submitAttempt">Please enter password.</small> -->
+                <ion-item>
+                    <ion-label position="floating" color="">Mobile Number</ion-label>
+                    <ion-input type="number" formControlName="mobile"></ion-input>
+                </ion-item>
+                <!-- <small style="color:#fc7303" *ngIf="!form.controls.mobile.valid  && submitAttempt">Please enter password.</small> -->
+                <ion-item>
+                    <ion-label position="floating" color="">Email</ion-label>
+                    <ion-input type="email" formControlName="email"></ion-input>
+                </ion-item>
+                <!-- <small style="color:#fc7303" *ngIf="!form.controls.email.valid  && submitAttempt">Please enter password.</small> -->
+                <ion-item>
+                    <ion-label position="floating" color="">National Insurance number</ion-label>
+                    <ion-input type="number" formControlName="national_insurance_num"></ion-input>
+                </ion-item>
+                <!-- <small style="color:#fc7303" *ngIf="!form.controls.national_insurance_num.valid  && submitAttempt">Please enter password.</small> -->
+                <ion-item>
+                    <ion-label position="floating" color="">House Name / Number</ion-label>
+                    <ion-input type="text" formControlName="house_name_num"></ion-input>
+                </ion-item>
+                <!-- <small style="color:#fc7303" *ngIf="!form.controls.house_name_num.valid  && submitAttempt">Please enter password.</small> -->
+                <ion-item>
+                    <ion-label position="floating" color="">Flat Number</ion-label>
+                    <ion-input type="text" formControlName="flat_num"></ion-input>
+                </ion-item>
+                <!-- <small style="color:#fc7303" *ngIf="!form.controls.flat_num.valid  && submitAttempt">Please enter password.</small> -->
+                <ion-item>
+                    <ion-label position="floating" color="">Years at address</ion-label>
+                    <ion-input type="text" formControlName="years_at_addr"></ion-input>
+                </ion-item>
+                <!-- <small style="color:#fc7303" *ngIf="!form.controls.years_at_addr.valid  && submitAttempt">Please enter password.</small> -->
+                <ion-item>
+                    <ion-label position="floating" color="">City</ion-label>
+                    <ion-input type="text" formControlName="city"></ion-input>
+                </ion-item>
+                <!-- <small style="color:#fc7303" *ngIf="!form.controls.city.valid  && submitAttempt">Please enter password.</small> -->
+                <ion-item>
+                    <ion-label position="floating" color="">Post Code</ion-label>
+                    <ion-input type="text" formControlName="post_code"></ion-input>
+                    <ion-button class="ss_dd_b" (click)="getAddr()" slot="end">Get Address</ion-button>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Number/Premise</ion-label>
+                    <ion-select formControlName="numbers">
+                        <ion-select-option *ngFor="let v of numbers">{{ v }}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Street</ion-label>
+                    <ion-input type="text" formControlName="street" [(ngModel)]="street"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Town</ion-label>
+                    <ion-input readonly type="text" formControlName="town" [(ngModel)]="town"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">County</ion-label>
+                    <ion-input readonly type="text" formControlName="country" [(ngModel)]="county"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Months at address</ion-label>
+                    <ion-input type="text" formControlName="month_at_addr"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">How much is your monthly rent / mortgage?</ion-label>
+                    <ion-input type="number" formControlName="rent_or_mortgage"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">What is your employment status?</ion-label>
+                    <ion-input type="text" formControlName="employee_status"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Job tittle</ion-label>
+                    <ion-input type="text" formControlName="job_title"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Are you currently on sick leave?</ion-label>
+                    <ion-select formControlName="curr_sick_leave">
+                        <ion-select-option value="No">No</ion-select-option>
+                        <ion-select-option value="Yes">Yes</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Name of the employer</ion-label>
+                    <ion-input type="text" formControlName="employer_name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="">Employment start date </ion-label>
+                    <ion-datetime formControlName="date" value="1990-02-19" placeholder="Select Date" formControlName="emp_start_date"></ion-datetime>
+
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Work telephone number</ion-label>
+                    <ion-input type="number" formControlName="work_tel_num"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Work office building number</ion-label>
+                    <ion-input type="text" formControlName="work_office_building_num"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Workplace street name</ion-label>
+                    <ion-input type="text" formControlName="work_street"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Work Town</ion-label>
+                    <ion-input type="text" formControlName="work_town"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Work Post code</ion-label>
+                    <ion-input type="text" formControlName="work_post_code"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Work County</ion-label>
+                    <ion-input type="text" formControlName="work_country"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">What is the specific reason for the loan?</ion-label>
+                    <ion-textarea type="text" formControlName="specefic_reason"></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">How much would you like to borrow?</ion-label>
+                    <ion-input type="number" formControlName="borrow_amount"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">What is your total individual monthly net income?</ion-label>
+                    <ion-input type="number" formControlName="net_income"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">How much do you owe in total?</ion-label>
+                    <ion-input type="number" formControlName="total_owe"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Payment and saving frequency</ion-label>
+                    <ion-select formControlName="pay_saving_freq">
+                        <ion-select-option value="Monthly">Monthly</ion-select-option>
+                        <ion-select-option value="Fortnightly">Fortnightly</ion-select-option>
+                        <ion-select-option value="Weekly">Weekly</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Amount to Save</ion-label>
+                    <ion-input type="number" formControlName="save_amount"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="">Amount to repay</ion-label>
+                    <ion-input type="number" formControlName="repay_amount"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="primary">How would you like to repay?</ion-label>
+                    <ion-select formControlName="repay_method">
+                        <ion-select-option value="Standing Orders">Standing Orders</ion-select-option>
+                        <ion-select-option value="Salary">Salary</ion-select-option>
+                        <ion-select-option value="Child benefit">Child benefit</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-list>
+            <ion-button (click)="onSubmit()" fill="outline" shape="round" style="margin-top: 20px; font-weight: 700;">
+                Submit
+            </ion-button>
+
+        </form>
+    </div>
+</ion-content>

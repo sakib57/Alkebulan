@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Join Family & Friends (S) Plan</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button text="" defaultHref="/select-family-plan"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <div class="ss_title">
+        <h4>Choose the Best tenure for your Savings Account Plan.</h4>
+    </div>
+    <div class="ss_box">
+
+        <ion-item>
+            <ion-label position="floating" color="primary">Select Group To Join</ion-label>
+            <ion-select (ionChange)="selectedGroup($event)">
+                <ion-select-option *ngFor="let group of groups" value="{{group.id}}">{{group.groupName}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+
+        <br/>
+        <br/>
+        <ion-button [disabled]="isDisabled" (click)="onSubmit()" fill="outline" shape="round" style="margin-top: 20px; font-weight: 700;">
+            Join This Group
+        </ion-button>
+    </div>
+
+</ion-content>

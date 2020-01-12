@@ -1,0 +1,53 @@
+<ion-header no-border>
+    <ion-toolbar color="primary">
+        <ion-title style="text-transform: uppercase;">{{groupName}}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button text="" defaultHref="/view-payments"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="groupName != '' ">
+    <h5 class="ss_title">Payments</h5>
+    <ion-card *ngFor="let p of payments">
+        <ion-card-content>
+            <ion-grid>
+
+                <ion-row>
+                    <ion-col size="5" text-right><strong> Payment Date:</strong></ion-col>
+                    <ion-col size="7">{{p.payment_date | date}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="5" text-right><strong>Plan Type:</strong></ion-col>
+                    <ion-col size="7">{{p.type}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="5" text-right><strong>Plan period:</strong></ion-col>
+                    <ion-col size="7">{{p.period}}</ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+    <br>
+
+    <h5 style="text-align:center; color: #009fe3; position: relative; top:-80px;">Received Payments</h5>
+    <ion-card *ngFor="let p of r_payments">
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="5" text-right><strong>Payment Date:</strong></ion-col>
+                    <ion-col size="7">{{p.payment_date | date}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="5" text-right><strong>Plan Type:</strong></ion-col>
+                    <ion-col size="7">{{p.type}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="5" text-right><strong>Plan period:</strong></ion-col>
+                    <ion-col size="7">{{p.period}}</ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

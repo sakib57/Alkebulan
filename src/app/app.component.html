@@ -1,0 +1,85 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <div class="menu-header">
+            <div class="overlay">
+              <ion-img src="../assets/icon/logo.png" style="width:120px" class="title"></ion-img>
+              <h6 style="text-transform: uppercase;color:#009fe3;font-weight: 600;margin-top: 5px;letter-spacing: 0px;font-size: 14px" class="ion-text-center">Building Trust in Unity</h6>
+            </div>
+          </div>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <!-- <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerLink="/home">
+              <ion-icon slot="start" ios="ios-person" md="md-person"></ion-icon>
+              Individual Savings Plan
+            </ion-item>
+            <ion-item routerLink="/request-to-join">
+              <ion-icon slot="start" ios="ios-add-circle" md="md-add-circle"></ion-icon>
+              Request to join Plan
+            </ion-item>
+            <ion-item>
+              <ion-icon slot="start" ios="ios-add-circle" md="md-add-circle"></ion-icon>
+              Payments
+              <ion-list>
+                <ion-item routerLink="/view-payments"> View Payments</ion-item>
+                <ion-item routerLink="/late-payments"> Late Payments</ion-item>
+              </ion-list>
+            </ion-item>
+            <ion-item (click)="logout()">
+              <ion-icon slot="start" ios="ios-log-out" md="md-log-out"></ion-icon>
+              Logout
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list> -->
+        <div *ngFor="let p of appPages">
+          <ion-menu-toggle *ngIf="p.url">
+              <ion-item lines="none"
+              [routerLink]="p.url" routerDirection="root" 
+              routerLinkActive="active">
+            <ion-icon [name]="p.icon" slot="start"></ion-icon>
+            {{ p.title }}
+          </ion-item>
+          </ion-menu-toggle>
+          <ion-item button *ngIf="p.children?.length > 0" (click)="p.open = !p.open"
+            [class.active-parent]="p.open" detail="false" lines="none">
+            <ion-icon slot="start" name="arrow-forward" *ngIf="!p.open"></ion-icon>
+            <ion-icon slot="start" name="arrow-down" *ngIf="p.open"></ion-icon>
+            {{ p.title }}
+          </ion-item>
+          <ion-list *ngIf="p.open">
+            <ion-menu-toggle>
+              <ion-item *ngFor="let sub of p.children" 
+                  class="sub-item" lines="none"
+                  [routerLink]="sub.url" routerDirection="root" 
+                  routerLinkActive="active">
+                <ion-icon [name]="sub.icon" slot="start"></ion-icon>
+                {{ sub.title }}
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+        </div>
+        <ion-menu-toggle>
+          <ion-item (click)="logout()" lines="none">
+            <ion-icon slot="start" ios="ios-log-out" md="md-log-out"></ion-icon>
+            Logout
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

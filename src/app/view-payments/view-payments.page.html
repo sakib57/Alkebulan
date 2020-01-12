@@ -1,0 +1,169 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            View Payments
+        </ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-segment (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="individual" checked>
+                <ion-label>INDIVIDUAL PLAN</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="family">
+                <ion-label>FRIENDS & FAMILY PLAN</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div *ngIf="term == 'individual'">
+
+        <div *ngFor="let v of payments">
+
+            <div *ngFor="let i of v">
+                <ion-card>
+                    <ion-card-header class="ion-text-center" *ngIf="i.plan_name">
+                        <ion-card-title>{{ i.plan_name}}</ion-card-title>
+                    </ion-card-header>
+
+                    <ion-card-content>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col class="ion-text-right" size="5">
+                                    <h4> <strong>Plan Type</strong> </h4>
+                                </ion-col>
+                                <ion-col>
+                                    <h4>{{ i.type }}</h4>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col class="ion-text-right" size="5">
+                                    <h4><strong>Plan Period</strong></h4>
+                                </ion-col>
+                                <ion-col>
+                                    <h4>{{ i.period }}</h4>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col class="ion-text-right" size="5">
+                                    <h4><strong>Amount</strong></h4>
+                                </ion-col>
+                                <ion-col>
+                                    <h4>{{ i.price }} £</h4>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col class="ion-text-right" size="5">
+                                    <h4><strong>Total Cycle</strong></h4>
+                                </ion-col>
+                                <ion-col>
+                                    <h4>{{ i.total_cycle }}</h4>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col class="ion-text-right" size="5">
+                                    <h4><strong>Date</strong></h4>
+                                </ion-col>
+                                <ion-col>
+                                    <h4>{{ i.payment_date | date }}</h4>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+
+
+
+        </div>
+
+        <div class="plan" *ngIf="payments.length < 1 && !isLoading">
+            <p>No Individual Plan Yet</p>
+        </div>
+
+    </div>
+
+
+    <div *ngIf="term == 'family'">
+        <div *ngFor="let g of groups; let i=index" class="payments_div">
+            <div *ngIf="g.all_payments.length > 0 || g.all_received_payments.length > 0">
+
+                <p *ngIf="g.all_received_payments.length == 0" class="ss_h">GROUP: {{g.all_payments[0].groupName}}</p>
+                <p *ngIf="g.all_payments.length == 0" class="ss_h">GROUP: {{g.all_received_payments[0].groupName}}</p>
+
+                <p *ngIf="g.all_payments.length > 0 && g.all_received_payments.length > 0" class="ss_h">GROUP: {{g.all_payments[0].groupName}}</p>
+
+                <ion-card style="text-align: left;">
+                    <ion-card-header class="ss_crd_head">
+                        <ion-card-subtitle>Payments ({{g.all_payments.length}})</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content *ngIf="g.all_payments.length > 0">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="5"><strong>Payment Date:</strong></ion-col>
+                                <ion-col size="7">{{g.all_payments[0].payment_date | date}}</ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col size="5"><strong>Plan Type:</strong></ion-col>
+                                <ion-col size="7">{{g.all_payments[0].type}}</ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col size="5"><strong>Plan period:</strong></ion-col>
+                                <ion-col size="7">{{g.all_payments[0].period}}</ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col style="text-align: right;">
+                                    <a routerLink="/view-all-payments/{{g.group_id}}" style="text-decoration: none;">
+                                        <small style="letter-spacing: 1px;">View All</small>
+                                    </a>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-content>
+                    <ion-card-content *ngIf="g.all_payments.length == 0">
+                        <small>No Payments Made</small>
+                    </ion-card-content>
+                </ion-card>
+
+                <ion-card style="text-align: left;">
+                    <ion-card-header class="ss_crd_head">
+                        <ion-card-subtitle>Received Payments ({{g.all_received_payments.length}})</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content *ngIf="g.all_received_payments.length > 0">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="5"><strong>Payment Date:</strong></ion-col>
+                                <ion-col size="7">{{g.all_received_payments[0].payment_date | date}}</ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col size="5"><strong>Plan Type:</strong></ion-col>
+                                <ion-col size="7">{{g.all_received_payments[0].type}}</ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col size="5"><strong>Plan period:</strong></ion-col>
+                                <ion-col size="7">{{g.all_received_payments[0].period}}</ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col style="text-align: right;">
+                                    <a routerLink="/view-all-payments/{{g.group_id}}" style="text-decoration: none;">
+                                        <small style="letter-spacing: 1px;">View All</small>
+                                    </a>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-content>
+                    <ion-card-content *ngIf="g.all_received_payments.length == 0">
+                        <small>No Payments Received</small>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+            <br>
+        </div>
+    </div>
+
+</ion-content>

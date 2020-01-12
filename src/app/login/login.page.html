@@ -1,0 +1,50 @@
+<ion-header no-border>
+    <ion-toolbar color="primary">
+        <ion-title>Login</ion-title>
+    </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content>
+
+
+    <div class="login">
+        <div style="text-align: center; padding-top:40px;">
+            <img src="../../assets/icon/logo.png" style="height: 50px; width: 140px;">
+            <h6 style="text-transform: uppercase;color: #009fe3;font-weight: 600;margin-top: 4px;letter-spacing: 0px;font-size: 14px">Building Trust in Unity</h6>
+        </div>
+        <form [formGroup]="form" class="ion-padding">
+            <ion-list>
+                <ion-item no-lines>
+                    <ion-label position="" color="primary">
+                        <ion-icon name="mail"></ion-icon>
+                    </ion-label>
+                    <ion-input type="email" formControlName="email" placeholder="Enter your mail"></ion-input>
+                </ion-item>
+                <small style="color:#fc7303" *ngIf="!form.controls.email.valid  && submitAttempt">Please enter a valid email.</small>
+                <ion-item no-lines>
+                    <ion-label position=" " color="primary">
+                        <ion-icon name="eye"></ion-icon>
+                    </ion-label>
+                    <ion-input type="password" formControlName="password" placeholder="Enter your password"></ion-input>
+                </ion-item>
+                <small style="color:#fc7303" *ngIf="!form.controls.password.valid  && submitAttempt">Please enter password.</small>
+                <br>
+                <small style="color:#fc7303" *ngIf="loginErrorMsg">{{loginErrorMsg}}</small>
+                <br>
+                <ion-button (click)="onSubmit()" fill="outline" shape="round" style="margin-top: 20px; font-weight: 700;">
+                    Login
+                </ion-button>
+            </ion-list>
+        </form>
+    </div>
+    <div class="ss_bottom">
+        <div style="text-align: center;">
+            <a routerLink="/register" style="text-decoration: none; font-weight: 700;">REGISTER</a>
+        </div>
+        <div style="text-align:center; margin-top: 20px;">
+            <a><small routerLink="/membership">See Membership</small></a>
+        </div>
+    </div>
+</ion-content>

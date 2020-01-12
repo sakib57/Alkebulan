@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Group Members</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="hasData">
+    <ion-card *ngFor="let group of group_info; let i=index">
+        <ion-card-header>
+            <ion-card-title float-left>{{group.groupName}} </ion-card-title>
+            <ion-button color="light" float-right shape="round" fill="outline" size="small" routerLink="/view-members/{{i}}"> Members </ion-button>
+        </ion-card-header>
+        <ion-card-content>
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="5"><strong>Type:</strong> </ion-col>
+                    <ion-col>{{group.type}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="5"><strong>Period:</strong> </ion-col>
+                    <ion-col>{{group.period}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="5"><strong>Amount:</strong> </ion-col>
+                    <ion-col>£{{group.amount}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="5"><strong>Members:</strong> </ion-col>
+                    <ion-col>{{group.num_of_member}}</ion-col>
+
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+
+<ion-content *ngIf="!hasData && msg">
+    <div style="text-align: center;">
+        <p>{{msg}}</p>
+    </div>
+</ion-content>

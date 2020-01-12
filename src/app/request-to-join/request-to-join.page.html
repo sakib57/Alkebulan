@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Request to join Plan
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="plan.length > 0 && !isLoading">
+    <ion-card *ngFor="let v of plan let i = index">
+      <ion-card-header class="ion-text-center">
+        {{ v.created_on | date}}
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid class="ion-text-center">
+          <ion-row>
+            <ion-col>
+                <h4>Group Name</h4>
+            </ion-col>
+            <ion-col>
+                <h4>{{ v.groupName }}</h4>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+                <h4>Created By</h4>
+            </ion-col>
+            <ion-col>
+                <h4>{{ v.fname }} {{ v.lname }}</h4>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+                <h4>Plan Type</h4>
+            </ion-col>
+            <ion-col>
+                <h4>{{ v.type }}</h4>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+                <h4>Plan Period</h4>
+            </ion-col>
+            <ion-col>
+                <h4>{{ v.period }}</h4>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+                <h4>Amount</h4>
+            </ion-col>
+            <ion-col>
+                <h4>{{ v.plan_amount }} £</h4>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-padding">
+              <ion-button *ngIf="v.is_joined != '2'" (click)="accept(v.inv_id,i)" color="success">Accept</ion-button>
+            </ion-col>
+            <ion-col size="6" class="ion-padding">
+              <ion-button *ngIf="v.is_joined != '2'" (click)="deny(v.inv_id,i)" color="danger">Deny</ion-button>
+              <ion-button *ngIf="v.is_joined == '2'" disabled color="primary">Denied</ion-button>
+            </ion-col>
+          </ion-row>
+          
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+</ion-content>
+
+<ion-content *ngIf="plan.length < 1 && !isLoading">
+  <div class="no-data">
+    <p class="ion-text-center">No Join Request Yet</p>
+  </div>
+</ion-content>

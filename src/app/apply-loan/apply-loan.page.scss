@@ -1,0 +1,17 @@
+.login {
+    margin: 20px;
+    text-align: center;
+}
+
+ion-list {
+    ion-item {
+        --padding-start: 0;
+        ion-label {
+            color: #909090;
+        }
+        .ss_dd_b {
+            position: relative;
+            top: 25px;
+        }
+    }
+}
